@@ -8,6 +8,7 @@ class CustomColors {
   static Color error = const Color(0xFFD70C24);
   static Color success = const Color(0xFF38BAA7);
   static Color info = const Color(0xFF1BB0DF);
+  static Color orange = const Color(0xFFFFBF00);
   static Color orange10 = const Color(0xFFffd27d);
   static Color dark = const Color(0xFF000814);
   static Color white = const Color(0xFFF9F6EE);

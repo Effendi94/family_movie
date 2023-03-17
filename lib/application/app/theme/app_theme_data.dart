@@ -6,11 +6,11 @@ import 'app_text_theme.dart';
 ThemeData appThemeData(BuildContext context) {
   return ThemeData(
     colorScheme:
-        ColorScheme.fromSwatch().copyWith(secondary: CustomColors.primary),
+        ColorScheme.fromSwatch().copyWith(secondary: CustomColors.orange),
     fontFamily: Common.defaultFontFamily,
     textTheme: AppTextTheme.getThemeText(),
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: CustomColors.textPrimary,
+    scaffoldBackgroundColor: CustomColors.dark,
+    primaryColor: CustomColors.dark,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
