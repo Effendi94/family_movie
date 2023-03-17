@@ -1,5 +1,5 @@
-import '../helpers/format_utils.dart';
-import 'static.dart';
+import '../../helpers/format_utils.dart';
+import '../static.dart';
 
 class Movie {
   Movie({

@@ -5,10 +5,10 @@ import '../application/app/app.locator.dart';
 import '../application/app/constants/common.dart';
 import '../application/app/constants/endpoint.dart';
 import '../application/helpers/dio_error_type_parser.dart';
-import '../application/models/movie.dart';
+import '../application/models/movie/movie.dart';
 import '../application/models/response_json.dart';
 import '../application/models/static.dart';
-import '../application/models/video_data.dart';
+import '../application/models/movie/video_data.dart';
 import '../application/services/user_service.dart';
 
 class MovieAPI {
