@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../application/app/constants/custom_colors.dart';
+import '../../../application/app/constants/image_constants.dart';
 import 'startup_viewmodel.dart';
 
 class StartUpView extends ViewModelBuilderWidget<StartupViewModel> {
@@ -24,16 +26,29 @@ class StartUpView extends ViewModelBuilderWidget<StartupViewModel> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Column(
-              children: const [
-                CircularProgressIndicator(),
-              ],
+            Image.asset(
+              ImageConstants.flutterIcon,
+              width: 100,
+              height: 100,
             ),
             const SizedBox(height: 24),
-            const Text(
-              'Initializing app...',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Family',
+                  style: Theme.of(context).textTheme.headline1?.copyWith(
+                        color: CustomColors.white,
+                      ),
+                ),
+                const SizedBox(width: 5),
+                Text(
+                  'Movie',
+                  style: Theme.of(context).textTheme.headline1?.copyWith(
+                        color: CustomColors.orange,
+                      ),
+                ),
+              ],
             ),
           ],
         ),
