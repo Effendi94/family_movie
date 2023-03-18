@@ -12,6 +12,12 @@ class CustomColors {
   static Color orange10 = const Color(0xFFffd27d);
   static Color dark = const Color(0xFF000814);
   static Color white = const Color(0xFFF9F6EE);
+  static Color neutralWhite = const Color(0xFFFFFFFF);
+  static Color neutral10 = const Color(0xFFFFFFFF);
+  static Color neutral20 = const Color(0xFFF8F9FA);
+  static Color neutral30 = const Color(0xFFFEF5EE);
+  static Color neutral40 = const Color(0xFFCDD3D8);
+  static Color neutral50 = const Color(0xFFC0C0C0);
 
   static Color shimmerBaseColor = Colors.grey.shade300;
   static Color shimmerhighlightColor = Colors.grey.shade100;

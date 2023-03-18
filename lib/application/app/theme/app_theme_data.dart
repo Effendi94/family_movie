@@ -3,7 +3,7 @@ import '../constants/common.dart';
 import '../constants/custom_colors.dart';
 import 'app_text_theme.dart';
 
-ThemeData appThemeData(BuildContext context) {
+ThemeData darkThemeData(BuildContext context) {
   return ThemeData(
     colorScheme:
         ColorScheme.fromSwatch().copyWith(secondary: CustomColors.orange),
@@ -18,7 +18,38 @@ ThemeData appThemeData(BuildContext context) {
             if (states.contains(MaterialState.disabled)) {
               return const Color(0xff808080);
             }
-            return const Color(0xff1919ff);
+            return CustomColors.orange;
+          },
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+ThemeData lightThemeData(BuildContext context) {
+  return ThemeData(
+    colorScheme:
+        ColorScheme.fromSwatch().copyWith(secondary: CustomColors.blue50),
+    fontFamily: Common.defaultFontFamily,
+    textTheme: AppTextTheme.getThemeText(),
+    scaffoldBackgroundColor: CustomColors.neutralWhite,
+    primaryColor: CustomColors.textPrimary,
+    iconTheme: const IconThemeData().copyWith(color: CustomColors.neutralWhite),
+    canvasColor: CustomColors.neutralWhite,
+    buttonTheme: const ButtonThemeData(alignedDropdown: true),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.disabled)) {
+              return const Color(0xffCED3D7);
+            }
+            return const Color(0xff07539A);
           },
         ),
         shape: MaterialStateProperty.all(

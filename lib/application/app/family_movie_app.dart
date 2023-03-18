@@ -15,7 +15,7 @@ class FamilyMovieApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: Common.titleBar,
-      theme: appThemeData(context),
+      theme: darkThemeData(context),
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       localizationsDelegates: const [

@@ -8,6 +8,10 @@ class AppTextTheme {
           fontWeight: FontWeight.w900,
           letterSpacing: 2,
         ),
+        headline2: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
         headline5: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
