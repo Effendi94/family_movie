@@ -29,13 +29,6 @@ class ApiInterceptor extends InterceptorsWrapper {
   }
 
   @override
-  void onResponse(response, ResponseInterceptorHandler handler) {
-    developer.log('success response', name: response.requestOptions.path);
-
-    super.onResponse(response, handler);
-  }
-
-  @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     developer.log(err.toString(), name: err.requestOptions.path);
 
