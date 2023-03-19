@@ -14,7 +14,9 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 
 import '../../apis/movie_api.dart';
+import '../../ui/views/movie/movie_viewmodel.dart';
 import '../services/dio_service.dart';
+import '../services/search_service.dart';
 import '../services/user_service.dart';
 
 final locator = StackedLocator.instance;
@@ -31,6 +33,8 @@ Future<void> setupLocator(
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => UserService());
+  locator.registerLazySingleton(() => SearchService());
   locator.registerSingleton<Dio>(DioService.getInstance());
   locator.registerLazySingleton(() => MovieAPI());
+  locator.registerSingleton(MovieViewModel());
 }
