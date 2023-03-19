@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import '../../../../../application/app/constants/custom_colors.dart';
-import '../../../../../application/app/constants/endpoint.dart';
-import '../../../../../application/helpers/ui_helpers.dart';
+import '../../../../application/app/constants/custom_colors.dart';
+import '../../../../application/app/constants/endpoint.dart';
+import '../../../../application/helpers/ui_helpers.dart';
 import '../movie_detail_viewmodel.dart';
 import 'video_player.dart';
 

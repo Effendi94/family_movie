@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../application/app/constants/custom_colors.dart';
 import 'tv_viewmodel.dart';
 
 class TVView extends ViewModelBuilderWidget<TVViewModel> {
@@ -8,7 +9,14 @@ class TVView extends ViewModelBuilderWidget<TVViewModel> {
 
   @override
   Widget builder(BuildContext context, TVViewModel viewModel, Widget? child) {
-    return Container();
+    return Scaffold(
+      backgroundColor: CustomColors.dark,
+      body: SingleChildScrollView(
+        child: Column(
+          children: const <Widget>[],
+        ),
+      ),
+    );
   }
 
   @override

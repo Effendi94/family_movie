@@ -6,10 +6,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:family_movie/ui/views/home/home_view.dart' as _i3;
-import 'package:family_movie/ui/views/movie/movie_detail/movie_detail_view.dart'
-    as _i4;
 import 'package:family_movie/ui/views/movie_category/movie_category_view.dart'
     as _i5;
+import 'package:family_movie/ui/views/movie_detail/movie_detail_view.dart'
+    as _i4;
 import 'package:family_movie/ui/views/startup/startup_view.dart' as _i2;
 import 'package:flutter/material.dart' as _i6;
 import 'package:flutter/material.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import '../../../../../application/app/constants/custom_colors.dart';
+import '../../../../application/app/constants/custom_colors.dart';
 import '../movie_detail_viewmodel.dart';
 
 class RatingStar extends HookViewModelWidget<MovieDetailViewModel> {

@@ -3,13 +3,13 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../../apis/movie_api.dart';
-import '../../../../application/app/app.locator.dart';
-import '../../../../application/app/constants/custom_colors.dart';
-import '../../../../application/enums/snackbar_type.dart';
-import '../../../../application/helpers/format_utils.dart';
-import '../../../../application/models/movie/movie.dart';
-import '../../../../application/models/movie/video_data.dart';
+import '../../../apis/movie_api.dart';
+import '../../../application/app/app.locator.dart';
+import '../../../application/app/constants/custom_colors.dart';
+import '../../../application/enums/snackbar_type.dart';
+import '../../../application/helpers/format_utils.dart';
+import '../../../application/models/movie/movie.dart';
+import '../../../application/models/movie/video_data.dart';
 
 class MovieDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();

@@ -5,7 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../../apis/movie_api.dart';
 import '../../../ui/views/startup/startup_view.dart';
 import '../../ui/views/home/home_view.dart';
-import '../../ui/views/movie/movie_detail/movie_detail_view.dart';
+import '../../ui/views/movie_detail/movie_detail_view.dart';
 import '../../ui/views/movie/movie_viewmodel.dart';
 import '../../ui/views/movie_category/movie_category_view.dart';
 import '../services/dio_service.dart';

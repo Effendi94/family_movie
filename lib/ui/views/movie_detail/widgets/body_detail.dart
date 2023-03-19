@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import '../../../../../application/app/constants/custom_colors.dart';
-import '../../../../../application/models/static.dart';
-import '../../../../shared/custom_button.dart';
+import '../../../../application/app/constants/custom_colors.dart';
+import '../../../../application/models/static.dart';
+import '../../../shared/custom_button.dart';
 import '../movie_detail_viewmodel.dart';
 import 'rating_start.dart';
 
