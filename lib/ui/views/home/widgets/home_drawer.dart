@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
 import '../../../../application/app/constants/image_constants.dart';
-import '../../../../application/enums/category_type.dart';
 import '../../../shared/listtile_widget.dart';
 import '../home_viewmodel.dart';
 

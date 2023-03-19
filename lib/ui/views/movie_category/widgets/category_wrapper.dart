@@ -3,7 +3,6 @@ import 'package:family_movie/application/models/movie/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import '../../../../../application/app/constants/custom_colors.dart';
 import '../../../../../application/app/constants/endpoint.dart';
 import '../../../shared/custom_loader.dart';
 import '../../../shared/image_error.dart';

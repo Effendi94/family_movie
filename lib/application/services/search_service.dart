@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../apis/movie_api.dart';
 import '../app/app.locator.dart';
 import '../app/app.router.dart';
-import '../enums/search_type.dart';
 import '../models/movie/movie.dart';
 
 class SearchService extends BaseViewModel with ReactiveServiceMixin {
