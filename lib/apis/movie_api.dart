@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import '../application/app/app.locator.dart';
 import '../application/app/constants/common.dart';
 import '../application/app/constants/endpoint.dart';
+import '../application/enums/search_type.dart';
 import '../application/helpers/dio_error_type_parser.dart';
 import '../application/models/movie/movie.dart';
 import '../application/models/response_json.dart';
@@ -313,7 +314,7 @@ class MovieAPI {
         'query': query,
       };
       final res = await _dio.get(
-        EndPoint.searchMovie,
+        Search.endpoint,
         queryParameters: params,
         options: Options(
           headers: headers,
