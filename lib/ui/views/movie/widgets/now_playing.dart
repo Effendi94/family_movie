@@ -4,23 +4,24 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 import '../../../../application/enums/category_type.dart';
 import '../../../shared/list_movie_slider.dart';
 import '../../../shared/sub_heading_text.dart';
-import '../../movie/movie_viewmodel.dart';
+import '../movie_viewmodel.dart';
 
-class UpComingView extends HookViewModelWidget<MovieViewModel> {
-  const UpComingView({super.key});
+class NowPlayingView extends HookViewModelWidget<MovieViewModel> {
+  const NowPlayingView({super.key});
 
   @override
   Widget buildViewModelWidget(BuildContext context, MovieViewModel viewModel) {
-    return viewModel.listUpcoming.isNotEmpty
+    return viewModel.listNowPlaying.isNotEmpty
         ? Column(
             children: [
               SubHeadingText(
-                headingText: 'Upcoming',
+                headingText: 'Now Playing',
+                color: Colors.white,
                 onTap: () =>
-                    viewModel.navigateToCategory(CategoryType.upcoming),
+                    viewModel.navigateToCategory(CategoryType.nowPlaying),
               ),
               ListMovieSlider(
-                listMovie: viewModel.listUpcoming,
+                listMovie: viewModel.listNowPlaying,
                 onTap: viewModel.goToDetailMovie,
               ),
             ],

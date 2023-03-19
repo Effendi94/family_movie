@@ -16,6 +16,28 @@ class CustomAppBar extends AppBar {
           automaticallyImplyLeading: false,
         );
 
+  CustomAppBar.defaults({
+    Key? key,
+    required BuildContext context,
+    required String appBarTitle,
+    bool automaticallyImplyLeading = false,
+    bool centerTitle = false,
+  }) : super(
+          key: key,
+          elevation: 0,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          title: Text(
+            appBarTitle,
+            style: Theme.of(context).textTheme.headline2?.copyWith(
+                  color: CustomColors.white,
+                  fontSize: 14,
+                ),
+          ),
+          centerTitle: centerTitle,
+        );
+
   CustomAppBar.search({
     Key? key,
     required BuildContext context,

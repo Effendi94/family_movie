@@ -14,7 +14,7 @@ mixin MovieMixin on BaseViewModel {
   List<MovieData> listPopular = [];
   List<MovieData> listTopRated = [];
   List<MovieData> listUpcoming = [];
-  List<MovieData> listSearch = [];
+
   List<MovieData> listCategoryMovie = [];
 
   bool nowPlayingHasError = false;
@@ -98,24 +98,10 @@ mixin MovieMixin on BaseViewModel {
     notifyListeners();
   }
 
-  void searchMovie(String query) async {
-    if (query.isNotEmpty) {
-      isSearching = true;
-      final res = await runBusyFuture(
-        _movieApi.searchMovie(query),
-      );
-      res.fold((l) {}, (res) {
-        listSearch.addAll(res);
-      });
-      isSearching = false;
-      notifyListeners();
-    }
-  }
-
   void goToDetailMovie(int? movieId) {
-    // _navigationService.navigateTo(
-    //   Routes.movieDetailView,
-    //   arguments: MovieDetailViewArguments(movieId: movieId),
-    // );
+    _navigationService.navigateTo(
+      Routes.movieDetailView,
+      arguments: MovieDetailViewArguments(movieId: movieId),
+    );
   }
 }

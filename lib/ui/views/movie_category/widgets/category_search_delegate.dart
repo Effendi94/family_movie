@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../application/app/constants/custom_colors.dart';
+import '../../../../../application/app/constants/custom_colors.dart';
 import '../../../shared/custom_loader.dart';
-import '../home_viewmodel.dart';
+import '../movie_category_viewmodel.dart';
 
-class HomeSearchDelegate extends SearchDelegate {
+class CategorySearchDelegate extends SearchDelegate {
   @override
   String? get searchFieldLabel => 'Search Movie';
 
@@ -42,8 +42,8 @@ class HomeSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // if (query.isNotEmpty) {
-    //   return ViewModelBuilder<HomeViewModel>.reactive(
-    //     viewModelBuilder: () => HomeViewModel(),
+    //   return ViewModelBuilder<MovieCategoryViewModel>.reactive(
+    //     viewModelBuilder: () => MovieCategoryViewModel(),
     //     onModelReady: (viewModel) => viewModel.searchMovie(query),
     //     disposeViewModel: false,
     //     fireOnModelReadyOnce: true,

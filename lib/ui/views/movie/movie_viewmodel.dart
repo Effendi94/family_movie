@@ -12,12 +12,12 @@ class MovieViewModel extends FutureViewModel with MovieMixin {
   void navigateToCategory(CategoryType categoryType) {
     Category.setType = categoryType;
 
-    // _navigationService.navigateTo(Routes.categoryView);
+    _navigationService.navigateTo(Routes.movieCategoryView);
   }
 
   @override
-  Future futureToRun() async {
-    await Future.wait([
+  Future futureToRun() {
+    return Future.wait([
       getNowPlaying(),
       getPopular(),
       getUpcoming(),

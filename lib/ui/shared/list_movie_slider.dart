@@ -5,6 +5,7 @@ import '../../application/app/constants/endpoint.dart';
 import '../../application/helpers/format_utils.dart';
 import '../../application/helpers/ui_helpers.dart';
 import '../../application/models/movie/movie.dart';
+import 'image_error.dart';
 
 class ListMovieSlider extends StatelessWidget {
   final List<MovieData> listMovie;
@@ -32,6 +33,7 @@ class ListMovieSlider extends StatelessWidget {
           return InkWell(
             onTap: () => onTap(movie.id),
             child: Card(
+              color: CustomColors.dark.withOpacity(0.8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -52,29 +54,9 @@ class ListMovieSlider extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       ),
-                      errorWidget: (context, url, error) => SizedBox(
+                      errorWidget: (context, url, error) => ImageError(
                         width: screenWidth(context) * .3,
                         height: screenHeight(context) * .22,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.error,
-                              color: CustomColors.error,
-                            ),
-                            Text(
-                              'Image Error',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: CustomColors.textPrimary,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12,
-                                  ),
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                   ),
@@ -85,7 +67,7 @@ class ListMovieSlider extends StatelessWidget {
                     child: Text(
                       movie.title ?? '',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: CustomColors.textPrimary,
+                            color: CustomColors.neutralWhite,
                             fontWeight: FontWeight.w700,
                             fontSize: 12,
                           ),

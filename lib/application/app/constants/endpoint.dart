@@ -11,4 +11,5 @@ class EndPoint {
   static const videoMovie = '/3/movie/%MOVIE_ID%/videos';
   static const searchByKeyword = '/3/search/keyword';
   static const searchMovie = '/3/search/movie';
+  static const searchTV = '/3/search/tv';
 }
