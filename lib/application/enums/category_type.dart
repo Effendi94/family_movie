@@ -5,6 +5,8 @@ enum CategoryType {
   upcoming,
   topRated,
   nowPlaying,
+  tvOnTheAir,
+  tvPopular,
 }
 
 class Category {
@@ -23,6 +25,10 @@ class Category {
         return 'Top Rated';
       case CategoryType.nowPlaying:
         return 'Now Playing';
+      case CategoryType.tvOnTheAir:
+        return 'TV On The Air';
+      case CategoryType.tvPopular:
+        return 'TV Popular';
       default:
         return 'Popular';
     }
@@ -36,6 +42,10 @@ class Category {
         return EndPoint.topRatedMovie;
       case CategoryType.nowPlaying:
         return EndPoint.nowPlayingMovie;
+      case CategoryType.tvOnTheAir:
+        return EndPoint.tvOnTheAir;
+      case CategoryType.tvPopular:
+        return EndPoint.tvPopular;
       default:
         return EndPoint.popularMovie;
     }

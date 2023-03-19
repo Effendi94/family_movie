@@ -6,8 +6,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:family_movie/ui/views/home/home_view.dart' as _i3;
-import 'package:family_movie/ui/views/movie_category/movie_category_view.dart'
-    as _i5;
+import 'package:family_movie/ui/views/category/category_view.dart' as _i5;
 import 'package:family_movie/ui/views/movie_detail/movie_detail_view.dart'
     as _i4;
 import 'package:family_movie/ui/views/startup/startup_view.dart' as _i2;
@@ -49,7 +48,7 @@ class StackedRouter extends _i1.RouterBase {
     ),
     _i1.RouteDef(
       Routes.movieCategoryView,
-      page: _i5.MovieCategoryView,
+      page: _i5.CategoryView,
     ),
   ];
 
@@ -74,9 +73,9 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i5.MovieCategoryView: (data) {
+    _i5.CategoryView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.MovieCategoryView(),
+        builder: (context) => const _i5.CategoryView(),
         settings: data,
       );
     },

@@ -14,6 +14,7 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 
 import '../../apis/movie_api.dart';
+import '../../apis/tv_api.dart';
 import '../../ui/views/movie/movie_viewmodel.dart';
 import '../services/dio_service.dart';
 import '../services/search_service.dart';
@@ -36,5 +37,6 @@ Future<void> setupLocator(
   locator.registerLazySingleton(() => SearchService());
   locator.registerSingleton<Dio>(DioService.getInstance());
   locator.registerLazySingleton(() => MovieAPI());
+  locator.registerLazySingleton(() => TVAPI());
   locator.registerSingleton(MovieViewModel());
 }

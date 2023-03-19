@@ -7,6 +7,8 @@ class EndPoint {
   static const popularMovie = '/3/movie/popular';
   static const topRatedMovie = '/3/movie/top_rated';
   static const upcomingMovie = '/3/movie/upcoming';
+  static const tvOnTheAir = '/3/tv/on_the_air';
+  static const tvPopular = '/3/tv/popular';
   static const detailMovie = '/3/movie/%MOVIE_ID%';
   static const videoMovie = '/3/movie/%MOVIE_ID%/videos';
   static const searchByKeyword = '/3/search/keyword';

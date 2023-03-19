@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 import '../../../../application/enums/category_type.dart';
 import '../../../../application/mixins/movie_mixin.dart';
 
-class MovieCategoryViewModel extends FutureViewModel with MovieMixin {
+class CategoryViewModel extends FutureViewModel with MovieMixin {
   bool isLoading = false;
 
   String get appBarTitle => Category.appbarTitle;

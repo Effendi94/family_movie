@@ -7,14 +7,14 @@ import '../../../../../application/app/constants/endpoint.dart';
 import '../../../shared/custom_loader.dart';
 import '../../../shared/image_error.dart';
 import '../../../shared/image_shimmer.dart';
-import '../movie_category_viewmodel.dart';
+import '../category_viewmodel.dart';
 
-class CategoryWrapper extends HookViewModelWidget<MovieCategoryViewModel> {
+class CategoryWrapper extends HookViewModelWidget<CategoryViewModel> {
   const CategoryWrapper({super.key});
 
   @override
   Widget buildViewModelWidget(
-      BuildContext context, MovieCategoryViewModel viewModel) {
+      BuildContext context, CategoryViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: viewModel.isLoading
@@ -23,7 +23,7 @@ class CategoryWrapper extends HookViewModelWidget<MovieCategoryViewModel> {
     );
   }
 
-  GridView buildBody(MovieCategoryViewModel viewModel) {
+  GridView buildBody(CategoryViewModel viewModel) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),

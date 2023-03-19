@@ -4,10 +4,11 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../apis/movie_api.dart';
 import '../../../ui/views/startup/startup_view.dart';
+import '../../apis/tv_api.dart';
 import '../../ui/views/home/home_view.dart';
 import '../../ui/views/movie_detail/movie_detail_view.dart';
 import '../../ui/views/movie/movie_viewmodel.dart';
-import '../../ui/views/movie_category/movie_category_view.dart';
+import '../../ui/views/category/category_view.dart';
 import '../services/dio_service.dart';
 import '../services/search_service.dart';
 import '../services/user_service.dart';
@@ -16,7 +17,7 @@ import '../services/user_service.dart';
   MaterialRoute(page: StartUpView, initial: true),
   MaterialRoute(page: HomeView, path: '/home'),
   MaterialRoute(page: MovieDetailView, path: '/movie-detail'),
-  MaterialRoute(page: MovieCategoryView, path: '/movie-category'),
+  MaterialRoute(page: CategoryView, path: '/movie-category'),
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: DialogService),
@@ -30,6 +31,7 @@ import '../services/user_service.dart';
     asType: Dio,
   ),
   LazySingleton(classType: MovieAPI),
+  LazySingleton(classType: TVAPI),
   Singleton(classType: MovieViewModel),
 ])
 class AppSetup {}
