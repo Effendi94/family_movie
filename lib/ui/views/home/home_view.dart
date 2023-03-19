@@ -45,6 +45,7 @@ class HomeView extends ViewModelBuilderWidget<HomeViewModel> {
             animation: animation,
             secondaryAnimation: secondaryAnimation,
             transitionType: SharedAxisTransitionType.horizontal,
+            fillColor: CustomColors.dark,
             child: child,
           );
         },
