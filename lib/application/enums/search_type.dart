@@ -6,7 +6,7 @@ enum SearchType {
 }
 
 class Search {
-  static SearchType? _type;
+  static SearchType? _type = SearchType.movie;
   static SearchType? get type => _type;
 
   static set setType(SearchType type) {
