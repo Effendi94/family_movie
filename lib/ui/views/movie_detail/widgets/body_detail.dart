@@ -9,6 +9,7 @@ import '../../../../application/helpers/format_utils.dart';
 import '../../../../application/models/movie/movie.dart';
 import '../../../shared/custom_textbutton_icon.dart';
 import '../../../shared/image_error.dart';
+import '../../../shared/image_not_available.dart';
 import '../movie_detail_viewmodel.dart';
 
 class BodyDetail extends HookViewModelWidget<MovieDetailViewModel> {
@@ -73,25 +74,31 @@ class BodyDetail extends HookViewModelWidget<MovieDetailViewModel> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: CachedNetworkImage(
-                          imageUrl: EndPoint.imdbImagePath.replaceAll(
-                              '%PATH%', review.authorDetails?.avatarPath ?? ''),
-                          fit: BoxFit.cover,
-                          width: 70,
-                          height: 90,
-                          placeholder: (context, url) => const SizedBox(
-                            width: 70,
-                            height: 90,
-                            child: Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const ImageError(
-                            width: 70,
-                            height: 90,
-                          ),
-                        ),
+                        child: review.authorDetails?.avatarPath == null
+                            ? const ImageNotAvailable(
+                                width: 70,
+                                height: 90,
+                              )
+                            : CachedNetworkImage(
+                                imageUrl: EndPoint.imdbImagePath.replaceAll(
+                                    '%PATH%',
+                                    review.authorDetails?.avatarPath ?? ''),
+                                fit: BoxFit.cover,
+                                width: 70,
+                                height: 90,
+                                placeholder: (context, url) => const SizedBox(
+                                  width: 70,
+                                  height: 90,
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const ImageError(
+                                  width: 70,
+                                  height: 90,
+                                ),
+                              ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
