@@ -1,5 +1,5 @@
 class EndPoint {
-  static const imdbImagePath = 'https://image.tmdb.org/t/p/w500%PATH%';
+  static const imdbImagePath = 'https://image.tmdb.org/t/p/w500/%PATH%';
   static const imdbVideoPath =
       'https://www.themoviedb.org/video/play?key=%VIDEO_KEY%';
 

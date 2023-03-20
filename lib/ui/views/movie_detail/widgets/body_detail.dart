@@ -4,7 +4,6 @@ import 'package:readmore/readmore.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
 import '../../../../application/app/constants/custom_colors.dart';
-import '../../../../application/app/constants/endpoint.dart';
 import '../../../../application/helpers/format_utils.dart';
 import '../../../../application/models/movie/movie.dart';
 import '../../../shared/custom_textbutton_icon.dart';
@@ -65,6 +64,8 @@ class BodyDetail extends HookViewModelWidget<MovieDetailViewModel> {
                 : viewModel.reviewData.length,
             itemBuilder: (context, index) {
               final review = viewModel.reviewData[index];
+              final String? image =
+                  FormatUtils.checkImageUrl(review.authorDetails?.avatarPath);
               return Card(
                 color: Colors.grey[700],
                 child: Padding(
@@ -74,15 +75,13 @@ class BodyDetail extends HookViewModelWidget<MovieDetailViewModel> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: review.authorDetails?.avatarPath == null
+                        child: image == null
                             ? const ImageNotAvailable(
                                 width: 70,
                                 height: 90,
                               )
                             : CachedNetworkImage(
-                                imageUrl: EndPoint.imdbImagePath.replaceAll(
-                                    '%PATH%',
-                                    review.authorDetails?.avatarPath ?? ''),
+                                imageUrl: image,
                                 fit: BoxFit.cover,
                                 width: 70,
                                 height: 90,

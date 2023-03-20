@@ -3,9 +3,10 @@ import 'package:family_movie/application/models/movie/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import '../../../../../application/app/constants/endpoint.dart';
+import '../../../../application/helpers/format_utils.dart';
 import '../../../shared/custom_loader.dart';
 import '../../../shared/image_error.dart';
+import '../../../shared/image_not_available.dart';
 import '../../../shared/image_shimmer.dart';
 import '../category_viewmodel.dart';
 
@@ -50,12 +51,17 @@ class CategoryWrapper extends HookViewModelWidget<CategoryViewModel> {
   }
 
   Widget buildImage(MovieData movie) {
-    return CachedNetworkImage(
-      imageUrl:
-          EndPoint.imdbImagePath.replaceAll('%PATH%', movie.posterPath ?? ''),
-      fit: BoxFit.cover,
-      placeholder: (context, url) => const ImageShimmer(),
-      errorWidget: (context, url, error) => const ImageError(),
-    );
+    final String? image = FormatUtils.checkImageUrl(movie.posterPath);
+    return image == null
+        ? const ImageNotAvailable(
+            width: 70,
+            height: 90,
+          )
+        : CachedNetworkImage(
+            imageUrl: image,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => const ImageShimmer(),
+            errorWidget: (context, url, error) => const ImageError(),
+          );
   }
 }

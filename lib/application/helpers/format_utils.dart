@@ -1,5 +1,7 @@
 import 'package:intl/intl.dart';
 
+import '../app/constants/endpoint.dart';
+
 class FormatUtils {
   static double convertToDouble(dynamic value) {
     if (value is String) {
@@ -29,5 +31,17 @@ class FormatUtils {
       return formattedDate;
     }
     return "";
+  }
+
+  static String? checkImageUrl(String? url) {
+    if (url == null) {
+      return url;
+    }
+    url = url.replaceFirst('/', '');
+    String result = EndPoint.imdbImagePath.replaceAll('%PATH%', url);
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      result = url;
+    }
+    return result;
   }
 }
