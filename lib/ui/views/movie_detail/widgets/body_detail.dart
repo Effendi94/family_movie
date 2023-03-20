@@ -1,11 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
 import '../../../../application/app/constants/custom_colors.dart';
-import '../../../../application/models/static.dart';
-import '../../../shared/custom_button.dart';
+import '../../../../application/app/constants/endpoint.dart';
+import '../../../../application/helpers/format_utils.dart';
+import '../../../../application/models/movie/movie.dart';
+import '../../../shared/custom_textbutton_icon.dart';
+import '../../../shared/image_error.dart';
 import '../movie_detail_viewmodel.dart';
-import 'rating_start.dart';
 
 class BodyDetail extends HookViewModelWidget<MovieDetailViewModel> {
   const BodyDetail({super.key});
@@ -13,127 +17,149 @@ class BodyDetail extends HookViewModelWidget<MovieDetailViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, MovieDetailViewModel viewModel) {
-    return Container(
-      margin: const EdgeInsets.only(top: 40),
-      child: DraggableScrollableSheet(
-        initialChildSize: 0.4,
-        builder: (context, scrollController) {
-          return Container(
-            padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
-            decoration: BoxDecoration(
-              color: CustomColors.white,
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
-            ),
-            child: Stack(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          viewModel.movieData.title ?? '-',
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    color: CustomColors.textPrimary,
-                                  ),
+    final movie = viewModel.movieData;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 5),
+          buildOverview(movie, context),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomTextButtonIcon(
+                onTap: () {},
+                label: 'Download',
+                icon: Icons.cloud_download,
+              ),
+              CustomTextButtonIcon(
+                onTap: () {},
+                label: 'Watchlist',
+                icon: Icons.add,
+              ),
+              CustomTextButtonIcon(
+                onTap: () {},
+                label: 'Share',
+                icon: Icons.share,
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
+          viewModel.reviewData.isEmpty
+              ? Container()
+              : Text(
+                  'Reviews',
+                  style: Theme.of(context).textTheme.caption?.copyWith(
+                        color: CustomColors.white,
+                        fontWeight: FontWeight.w900,
+                      ),
+                ),
+          ListView.builder(
+            physics: const ClampingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: viewModel.reviewData.length > 3
+                ? 3
+                : viewModel.reviewData.length,
+            itemBuilder: (context, index) {
+              final review = viewModel.reviewData[index];
+              return Card(
+                color: Colors.grey[700],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: CachedNetworkImage(
+                          imageUrl: EndPoint.imdbImagePath.replaceAll(
+                              '%PATH%', review.authorDetails?.avatarPath ?? ''),
+                          fit: BoxFit.cover,
+                          width: 70,
+                          height: 90,
+                          placeholder: (context, url) => const SizedBox(
+                            width: 70,
+                            height: 90,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const ImageError(
+                            width: 70,
+                            height: 90,
+                          ),
                         ),
-                        CustomButton(
-                          text: 'Watch Full Movie',
-                          leadingIcon: Icons.play_circle,
-                          onPressed: () => viewModel.onTapWatchMovie(context),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              review.authorDetails?.username ?? '',
+                              style:
+                                  Theme.of(context).textTheme.caption?.copyWith(
+                                        color: CustomColors.white,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                            ),
+                            const SizedBox(width: 5),
+                            Text(
+                              FormatUtils.convertShortDateTime(
+                                  review.createdAt ?? ''),
+                              style:
+                                  Theme.of(context).textTheme.caption?.copyWith(
+                                        color: CustomColors.textSecondary,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 10,
+                                      ),
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              review.content ?? '',
+                              style:
+                                  Theme.of(context).textTheme.caption?.copyWith(
+                                        color: CustomColors.white,
+                                      ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          _showGenres(viewModel.movieData.genres),
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: CustomColors.textSecondary,
-                                  ),
-                        ),
-                        Text(
-                          _showDuration(viewModel.movieData.runtime),
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: CustomColors.textSecondary,
-                                  ),
-                        ),
-                        const RatingStar(),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Overview',
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    color: CustomColors.textPrimary,
-                                  ),
-                        ),
-                        Text(
-                          '${viewModel.movieData.overview}',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: CustomColors.textPrimary,
-                                  ),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: Column(
-                      children: [
-                        Container(
-                          color: CustomColors.primary,
-                          height: 4,
-                          width: 48,
-                        ),
-                        const SizedBox(height: 3),
-                        Container(
-                          color: CustomColors.primary,
-                          height: 4,
-                          width: 24,
-                        ),
-                      ],
-                    )),
-              ],
-            ),
-          );
-        },
-        // initialChildSize: 0.5,
-        minChildSize: 0.25,
-        // maxChildSize: 1.0,
+              );
+            },
+          )
+        ],
       ),
     );
   }
 
-  String _showGenres(List<StaticModel>? genres) {
-    String result = '';
-    if (genres != null) {
-      for (var genre in genres) {
-        result += '${genre.name}, ';
-      }
-    }
-
-    if (result.isEmpty) {
-      return result;
-    }
-
-    return result.substring(0, result.length - 2);
-  }
-
-  String _showDuration(int? runtime) {
-    if (runtime != null && runtime > 0) {
-      final int hours = runtime ~/ 60;
-      final int minutes = runtime % 60;
-      if (hours > 0) {
-        return '${hours}h ${minutes}m';
-      } else {
-        return '${minutes}m';
-      }
-    }
-    return '-';
+  Widget buildOverview(MovieData movie, BuildContext context) {
+    return ReadMoreText(
+      movie.overview ?? '',
+      trimLines: 2,
+      colorClickableText: Colors.pink,
+      trimMode: TrimMode.Line,
+      trimCollapsedText: 'more',
+      // trimExpandedText: 'less',
+      style: Theme.of(context).textTheme.caption?.copyWith(
+            color: CustomColors.neutral40,
+            fontWeight: FontWeight.w700,
+            fontSize: 12,
+          ),
+      moreStyle: Theme.of(context).textTheme.caption?.copyWith(
+            color: CustomColors.orange,
+            fontWeight: FontWeight.w700,
+            fontSize: 10,
+          ),
+      lessStyle: Theme.of(context).textTheme.caption?.copyWith(
+            color: Colors.transparent,
+          ),
+    );
   }
 }

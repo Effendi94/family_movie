@@ -7,6 +7,7 @@ import '../application/app/constants/endpoint.dart';
 import '../application/enums/search_type.dart';
 import '../application/helpers/dio_error_type_parser.dart';
 import '../application/models/movie/movie.dart';
+import '../application/models/movie/review.dart';
 import '../application/models/response_json.dart';
 import '../application/models/static.dart';
 import '../application/models/movie/video_data.dart';
@@ -232,7 +233,7 @@ class MovieAPI {
         'language': 'en-US',
       };
       final res = await _dio.get(
-        EndPoint.videoMovie.replaceAll('%MOVIE_ID%', movieId),
+        EndPoint.movieVideo.replaceAll('%MOVIE_ID%', movieId),
         queryParameters: params,
         options: Options(
           headers: headers,
@@ -243,6 +244,48 @@ class MovieAPI {
           List.from(res.data['results'])
               .map(
                 (x) => VideoData.fromJson(x),
+              )
+              .toList(),
+        );
+        return Right(resultData);
+      } else {
+        return Left(ResponseJSON.fromJson(res.data));
+      }
+    } on DioError catch (e) {
+      final errorMessage = DioErrorTypeParser.parseToCustomMessage(e);
+      return Left(
+        ResponseJSON(
+          statusCode: e.response?.statusCode ?? Common.internalServerError,
+          statusMessage: errorMessage,
+          success: false,
+        ),
+      );
+    }
+  }
+
+  Future<Either<ResponseJSON, List<ReviewData>>> fetchMovieReview(
+      String movieId) async {
+    try {
+      final Map<String, dynamic> headers = {
+        'content-type': 'application/json',
+      };
+      final Map<String, dynamic> params = {
+        'api_key': _userService.movieAPIKey,
+        'language': 'en-US',
+      };
+      final res = await _dio.get(
+        EndPoint.movieReview.replaceAll('%MOVIE_ID%', movieId),
+        queryParameters: params,
+        options: Options(
+          headers: headers,
+        ),
+      );
+
+      if (res.statusCode == 200) {
+        final resultData = List<ReviewData>.from(
+          List.from(res.data['results'])
+              .map(
+                (x) => ReviewData.fromJson(x),
               )
               .toList(),
         );

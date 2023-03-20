@@ -127,7 +127,7 @@ class TVAPI {
         'language': 'en-US',
       };
       final res = await _dio.get(
-        EndPoint.videoTV.replaceAll('%TV_ID%', tvId),
+        EndPoint.tvVideo.replaceAll('%TV_ID%', tvId),
         queryParameters: params,
         options: Options(
           headers: headers,

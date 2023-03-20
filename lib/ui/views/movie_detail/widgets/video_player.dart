@@ -12,34 +12,31 @@ class VideoPlayer extends HookViewModelWidget<MovieDetailViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, MovieDetailViewModel viewModel) {
-    return Positioned(
-      top: 200,
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
-        height: screenHeight(context) * .25,
-        width: screenWidth(context) * .8,
-        child: viewModel.hasError
-            ? Center(
-                child: Text(
-                  'Player Error!',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: CustomColors.textPrimary,
-                      ),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      // height: screenHeight(context) * .25,
+      // width: screenWidth(context) * .8,
+      child: viewModel.hasError
+          ? Center(
+              child: Text(
+                'Player Error!',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: CustomColors.textPrimary,
+                    ),
+              ),
+            )
+          : viewModel.videoKey.isEmpty
+              ? Container()
+              : YoutubePlayer(
+                  controller: viewModel.videoPlayerController,
+                  showVideoProgressIndicator: true,
+                  progressIndicatorColor: CustomColors.primary,
+                  bottomActions: [
+                    CurrentPosition(),
+                    ProgressBar(isExpanded: true),
+                    RemainingDuration(),
+                  ],
                 ),
-              )
-            : viewModel.videoKey.isEmpty
-                ? Container()
-                : YoutubePlayer(
-                    controller: viewModel.videoPlayerController,
-                    showVideoProgressIndicator: true,
-                    progressIndicatorColor: CustomColors.primary,
-                    bottomActions: [
-                      CurrentPosition(),
-                      ProgressBar(isExpanded: true),
-                      RemainingDuration(),
-                    ],
-                  ),
-      ),
     );
   }
 }

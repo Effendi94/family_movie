@@ -9,6 +9,7 @@ import '../../../application/app/constants/custom_colors.dart';
 import '../../../application/enums/snackbar_type.dart';
 import '../../../application/helpers/format_utils.dart';
 import '../../../application/models/movie/movie.dart';
+import '../../../application/models/movie/review.dart';
 import '../../../application/models/movie/video_data.dart';
 
 class MovieDetailViewModel extends BaseViewModel {
@@ -18,6 +19,7 @@ class MovieDetailViewModel extends BaseViewModel {
 
   MovieData movieData = MovieData();
   List<VideoData> videoData = [];
+  List<ReviewData> reviewData = [];
   late YoutubePlayerController videoPlayerController;
 
   String get videoKey {
@@ -42,6 +44,7 @@ class MovieDetailViewModel extends BaseViewModel {
     await getVideoKey(movieId);
     await getMovieDetail(movieId);
     await prepareVideo();
+    await getMovieReview(movieId);
     if (hasError) {
       dispose();
       return;
@@ -80,6 +83,18 @@ class MovieDetailViewModel extends BaseViewModel {
       throw Exception(l.statusMessage);
     }, (r) {
       movieData = r;
+    });
+    notifyListeners();
+  }
+
+  Future<void> getMovieReview(String movieId) async {
+    final res = await runBusyFuture(
+      _movieApi.fetchMovieReview(movieId),
+    );
+    res.fold((l) {
+      throw Exception(l.statusMessage);
+    }, (r) {
+      reviewData = r;
     });
     notifyListeners();
   }

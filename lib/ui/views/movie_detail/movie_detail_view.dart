@@ -29,17 +29,21 @@ class MovieDetailView extends ViewModelBuilderWidget<MovieDetailViewModel> {
           ? CustomLoader.loaderWithAsset(context)
           : Stack(
               children: [
-                const HeaderDetail(),
-                const BodyDetail(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    backgroundColor: CustomColors.dark,
-                    foregroundColor: CustomColors.white,
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: viewModel.navigateBack,
+                SingleChildScrollView(
+                  child: Column(
+                    children: const [
+                      HeaderDetail(),
+                      BodyDetail(),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: CustomColors.white,
                     ),
+                    onPressed: viewModel.navigateBack,
                   ),
                 )
               ],

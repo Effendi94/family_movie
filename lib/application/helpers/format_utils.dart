@@ -21,4 +21,13 @@ class FormatUtils {
     }
     return "";
   }
+
+  static String convertYear(String strDate) {
+    if (strDate.isNotEmpty) {
+      DateTime dateTime = DateTime.parse(strDate);
+      String formattedDate = DateFormat('yyyy').format(dateTime);
+      return formattedDate;
+    }
+    return "";
+  }
 }
