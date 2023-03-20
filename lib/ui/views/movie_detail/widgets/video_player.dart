@@ -3,7 +3,6 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../application/app/constants/custom_colors.dart';
-import '../../../../application/helpers/ui_helpers.dart';
 import '../movie_detail_viewmodel.dart';
 
 class VideoPlayer extends HookViewModelWidget<MovieDetailViewModel> {
