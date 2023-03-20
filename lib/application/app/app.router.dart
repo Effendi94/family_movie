@@ -5,15 +5,16 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:family_movie/ui/views/category/category_view.dart' as _i6;
 import 'package:family_movie/ui/views/home/home_view.dart' as _i3;
-import 'package:family_movie/ui/views/category/category_view.dart' as _i5;
 import 'package:family_movie/ui/views/movie_detail/movie_detail_view.dart'
     as _i4;
 import 'package:family_movie/ui/views/startup/startup_view.dart' as _i2;
-import 'package:flutter/material.dart' as _i6;
+import 'package:family_movie/ui/views/tv_detail/tv_detail_view.dart' as _i5;
+import 'package:flutter/material.dart' as _i7;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i7;
+import 'package:stacked_services/stacked_services.dart' as _i8;
 
 class Routes {
   static const startUpView = '/';
@@ -22,13 +23,16 @@ class Routes {
 
   static const movieDetailView = '/movie-detail';
 
-  static const movieCategoryView = '/movie-category';
+  static const tvDetailview = '/tv-detail';
+
+  static const categoryView = '/category';
 
   static const all = <String>{
     startUpView,
     homeView,
     movieDetailView,
-    movieCategoryView,
+    tvDetailview,
+    categoryView,
   };
 }
 
@@ -47,8 +51,12 @@ class StackedRouter extends _i1.RouterBase {
       page: _i4.MovieDetailView,
     ),
     _i1.RouteDef(
-      Routes.movieCategoryView,
-      page: _i5.CategoryView,
+      Routes.tvDetailview,
+      page: _i5.TvDetailview,
+    ),
+    _i1.RouteDef(
+      Routes.categoryView,
+      page: _i6.CategoryView,
     ),
   ];
 
@@ -73,9 +81,16 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i5.CategoryView: (data) {
+    _i5.TvDetailview: (data) {
+      final args = data.getArgs<TvDetailviewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.CategoryView(),
+        builder: (context) => _i5.TvDetailview(key: args.key, tvId: args.tvId),
+        settings: data,
+      );
+    },
+    _i6.CategoryView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const _i6.CategoryView(),
         settings: data,
       );
     },
@@ -93,12 +108,23 @@ class MovieDetailViewArguments {
     required this.movieId,
   });
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
   final int? movieId;
 }
 
-extension NavigatorStateExtension on _i7.NavigationService {
+class TvDetailviewArguments {
+  const TvDetailviewArguments({
+    this.key,
+    required this.tvId,
+  });
+
+  final _i7.Key? key;
+
+  final int? tvId;
+}
+
+extension NavigatorStateExtension on _i8.NavigationService {
   Future<dynamic> navigateToStartUpView([
     int? routerId,
     bool preventDuplicates = true,
@@ -128,7 +154,7 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }
 
   Future<dynamic> navigateToMovieDetailView({
-    _i6.Key? key,
+    _i7.Key? key,
     required int? movieId,
     int? routerId,
     bool preventDuplicates = true,
@@ -144,14 +170,31 @@ extension NavigatorStateExtension on _i7.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToMovieCategoryView([
+  Future<dynamic> navigateToTvDetailview({
+    _i7.Key? key,
+    required int? tvId,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.tvDetailview,
+        arguments: TvDetailviewArguments(key: key, tvId: tvId),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCategoryView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.movieCategoryView,
+    return navigateTo<dynamic>(Routes.categoryView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

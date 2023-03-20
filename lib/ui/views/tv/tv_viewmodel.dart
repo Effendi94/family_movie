@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -26,7 +25,7 @@ class TVViewModel extends FutureViewModel with TVMixin {
         initialVideoId: id,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
-          // mute: true,
+          mute: true,
           disableDragSeek: true,
           hideControls: true,
         ),
@@ -47,7 +46,6 @@ class TVViewModel extends FutureViewModel with TVMixin {
       item.pause();
       item.reset();
     }
-    debugPrint('########## $index #########');
     lYTC[index].play();
     currentPageIndex = index;
     notifyListeners();
@@ -56,7 +54,18 @@ class TVViewModel extends FutureViewModel with TVMixin {
   void navigateToCategory(CategoryType categoryType) {
     Category.setType = categoryType;
 
-    _navigationService.navigateTo(Routes.movieCategoryView);
+    _navigationService.navigateTo(Routes.categoryView);
+  }
+
+  void goToTVDetail(int? tvId) {
+    for (var item in lYTC) {
+      item.pause();
+      item.reset();
+    }
+    _navigationService.navigateTo(
+      Routes.tvDetailview,
+      arguments: TvDetailviewArguments(tvId: tvId),
+    );
   }
 
   @override

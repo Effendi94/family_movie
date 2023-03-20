@@ -22,7 +22,7 @@ class TVOnTheAir extends HookViewModelWidget<TVViewModel> {
               ),
               ListTVSlider(
                 listTv: viewModel.listTVOnTheAir,
-                onTap: viewModel.goToDetailMovie,
+                onTap: viewModel.goToTVDetail,
               ),
             ],
           )

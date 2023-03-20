@@ -22,7 +22,7 @@ class TVPopular extends HookViewModelWidget<TVViewModel> {
               ),
               ListTVSlider(
                 listTv: viewModel.listTVPopular,
-                onTap: viewModel.goToDetailMovie,
+                onTap: viewModel.goToTVDetail,
               ),
             ],
           )

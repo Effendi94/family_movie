@@ -1,15 +1,12 @@
 import 'package:family_movie/application/models/movie/video_data.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 import '../../apis/tv_api.dart';
 import '../app/app.locator.dart';
-import '../app/app.router.dart';
 import '../models/movie/tv.dart';
 
 mixin TVMixin on BaseViewModel {
   final _tvApi = locator<TVAPI>();
-  final _navigationService = locator<NavigationService>();
   List<TvData> listTVOnTheAir = [];
   List<TvData> listTVPopular = [];
   List<TvData> listTVTopRated = [];
@@ -84,12 +81,5 @@ mixin TVMixin on BaseViewModel {
       });
     }
     notifyListeners();
-  }
-
-  void goToDetailMovie(int? movieId) {
-    _navigationService.navigateTo(
-      Routes.movieDetailView,
-      arguments: MovieDetailViewArguments(movieId: movieId),
-    );
   }
 }

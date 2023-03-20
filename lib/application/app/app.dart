@@ -9,6 +9,7 @@ import '../../ui/views/home/home_view.dart';
 import '../../ui/views/movie_detail/movie_detail_view.dart';
 import '../../ui/views/movie/movie_viewmodel.dart';
 import '../../ui/views/category/category_view.dart';
+import '../../ui/views/tv_detail/tv_detail_view.dart';
 import '../services/dio_service.dart';
 import '../services/search_service.dart';
 import '../services/user_service.dart';
@@ -17,7 +18,8 @@ import '../services/user_service.dart';
   MaterialRoute(page: StartUpView, initial: true),
   MaterialRoute(page: HomeView, path: '/home'),
   MaterialRoute(page: MovieDetailView, path: '/movie-detail'),
-  MaterialRoute(page: CategoryView, path: '/movie-category'),
+  MaterialRoute(page: TvDetailview, path: '/tv-detail'),
+  MaterialRoute(page: CategoryView, path: '/category'),
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: DialogService),

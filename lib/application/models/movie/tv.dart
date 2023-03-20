@@ -1,3 +1,5 @@
+import '../static.dart';
+
 class TV {
   TV({
     this.page,
@@ -69,13 +71,13 @@ class TvData {
   String? backdropPath;
   List<CreatedBy>? createdBy;
   List<int>? episodeRunTime;
-  DateTime? firstAirDate;
-  List<Genre>? genres;
+  String? firstAirDate;
+  List<StaticModel>? genres;
   String? homepage;
   int? id;
   bool? inProduction;
   List<String>? languages;
-  DateTime? lastAirDate;
+  String? lastAirDate;
   LastEpisodeToAir? lastEpisodeToAir;
   String? name;
   dynamic nextEpisodeToAir;
@@ -107,21 +109,18 @@ class TvData {
         episodeRunTime: json["episode_run_time"] == null
             ? []
             : List<int>.from(json["episode_run_time"]!.map((x) => x)),
-        firstAirDate: json["first_air_date"] == null
-            ? null
-            : DateTime.parse(json["first_air_date"]),
+        firstAirDate: json["first_air_date"],
         genres: json["genres"] == null
             ? []
-            : List<Genre>.from(json["genres"]!.map((x) => Genre.fromJson(x))),
+            : List<StaticModel>.from(
+                json["genres"]!.map((x) => StaticModel.fromJson(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
         languages: json["languages"] == null
             ? []
             : List<String>.from(json["languages"]!.map((x) => x)),
-        lastAirDate: json["last_air_date"] == null
-            ? null
-            : DateTime.parse(json["last_air_date"]),
+        lastAirDate: json["last_air_date"],
         lastEpisodeToAir: json["last_episode_to_air"] == null
             ? null
             : LastEpisodeToAir.fromJson(json["last_episode_to_air"]),
@@ -172,8 +171,7 @@ class TvData {
         "episode_run_time": episodeRunTime == null
             ? []
             : List<dynamic>.from(episodeRunTime!.map((x) => x)),
-        "first_air_date":
-            "${firstAirDate!.year.toString().padLeft(4, '0')}-${firstAirDate!.month.toString().padLeft(2, '0')}-${firstAirDate!.day.toString().padLeft(2, '0')}",
+        "first_air_date": firstAirDate,
         "genres": genres == null
             ? []
             : List<dynamic>.from(genres!.map((x) => x.toJson())),
@@ -183,8 +181,7 @@ class TvData {
         "languages": languages == null
             ? []
             : List<dynamic>.from(languages!.map((x) => x)),
-        "last_air_date":
-            "${lastAirDate!.year.toString().padLeft(4, '0')}-${lastAirDate!.month.toString().padLeft(2, '0')}-${lastAirDate!.day.toString().padLeft(2, '0')}",
+        "last_air_date": lastAirDate,
         "last_episode_to_air": lastEpisodeToAir?.toJson(),
         "name": name,
         "next_episode_to_air": nextEpisodeToAir,
@@ -253,26 +250,6 @@ class CreatedBy {
       };
 }
 
-class Genre {
-  Genre({
-    this.id,
-    this.name,
-  });
-
-  int? id;
-  String? name;
-
-  factory Genre.fromJson(Map<String, dynamic> json) => Genre(
-        id: json["id"],
-        name: json["name"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-      };
-}
-
 class LastEpisodeToAir {
   LastEpisodeToAir({
     this.airDate,
@@ -287,7 +264,7 @@ class LastEpisodeToAir {
     this.voteCount,
   });
 
-  DateTime? airDate;
+  String? airDate;
   int? episodeNumber;
   int? id;
   String? name;
@@ -300,8 +277,7 @@ class LastEpisodeToAir {
 
   factory LastEpisodeToAir.fromJson(Map<String, dynamic> json) =>
       LastEpisodeToAir(
-        airDate:
-            json["air_date"] == null ? null : DateTime.parse(json["air_date"]),
+        airDate: json["air_date"],
         episodeNumber: json["episode_number"],
         id: json["id"],
         name: json["name"],
@@ -314,8 +290,7 @@ class LastEpisodeToAir {
       );
 
   Map<String, dynamic> toJson() => {
-        "air_date":
-            "${airDate!.year.toString().padLeft(4, '0')}-${airDate!.month.toString().padLeft(2, '0')}-${airDate!.day.toString().padLeft(2, '0')}",
+        "air_date": airDate,
         "episode_number": episodeNumber,
         "id": id,
         "name": name,
@@ -388,7 +363,7 @@ class Season {
     this.seasonNumber,
   });
 
-  DateTime? airDate;
+  String? airDate;
   int? episodeCount;
   int? id;
   String? name;
@@ -397,8 +372,7 @@ class Season {
   int? seasonNumber;
 
   factory Season.fromJson(Map<String, dynamic> json) => Season(
-        airDate:
-            json["air_date"] == null ? null : DateTime.parse(json["air_date"]),
+        airDate: json["air_date"],
         episodeCount: json["episode_count"],
         id: json["id"],
         name: json["name"],
@@ -408,8 +382,7 @@ class Season {
       );
 
   Map<String, dynamic> toJson() => {
-        "air_date":
-            "${airDate!.year.toString().padLeft(4, '0')}-${airDate!.month.toString().padLeft(2, '0')}-${airDate!.day.toString().padLeft(2, '0')}",
+        "air_date": airDate,
         "episode_count": episodeCount,
         "id": id,
         "name": name,

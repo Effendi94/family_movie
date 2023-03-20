@@ -199,7 +199,7 @@ class MovieAPI {
         'language': 'en-US',
       };
       final res = await _dio.get(
-        EndPoint.detailMovie.replaceAll('%MOVIE_ID%', movieId),
+        EndPoint.movieDetail.replaceAll('%MOVIE_ID%', movieId),
         queryParameters: params,
         options: Options(
           headers: headers,
